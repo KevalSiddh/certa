@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "2f1e6bc0-d301-4aaf-8e28-c4400a0096e1",
+		"name": "Weather API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11436088"
+	},
+	"item": [
+		{
+			"name": "API1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseBody = pm.response.json();\r",
+							"\r",
+							"// Assert latitude and longitude values\r",
+							"pm.test(\"Latitude is 51.51\", function() {\r",
+							"    pm.expect(responseBody.latitude).to.eql(51.51);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Longitude is -0.13\", function() {\r",
+							"    pm.expect(responseBody.longitude).to.eql(-0.13);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 550ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(550);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"coord\": {\r\n        \"lon\": -0.12,\r\n        \"lat\": 51.50\r\n    },\r\n    \"weather\": [\r\n        {\r\n            \"id\": 300,\r\n            \"main\": \"Drizzle\",\r\n            \"description\": \"light intensity drizzle\",\r\n            \"icon\": \"09d\"\r\n        }\r\n    ],\r\n    \"base\": \"stations\",\r\n    \"main\": {\r\n        \"temp\": 280.32,\r\n        \"pressure\": 1012,\r\n        \"humidity\": 81,\r\n        \"temp_min\": 279.15,\r\n        \"temp_max\": 281.15\r\n    },\r\n    \"visibility\": 10000,\r\n    \"wind\": {\r\n        \"speed\": 4.1,\r\n        \"deg\": 80\r\n    },\r\n    \"clouds\": {\r\n        \"all\": 90\r\n    },\r\n    \"dt\": 1485789600,\r\n    \"sys\": {\r\n        \"type\": 1,\r\n        \"id\": 5091,\r\n        \"message\": 0.0103,\r\n        \"country\": \"GB\",\r\n        \"sunrise\": 1485762037,\r\n        \"sunset\": 1485794875\r\n    },\r\n    \"id\": 2643743,\r\n    \"name\": \"London\",\r\n    \"cod\": 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d28910d714a6e88630761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6 907d28910d714a6e88630761fae22"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
